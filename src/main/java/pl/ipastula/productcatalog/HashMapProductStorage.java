@@ -1,11 +1,11 @@
-package pl.ipastula.productcatalog;
+package pl.jkanclerz.productcatalog;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class HashMapProductStorage implements ProductStorage{
+public class HashMapProductStorage implements ProductStorage {
     private Map<String, Product> products;
 
     public HashMapProductStorage() {
@@ -35,4 +35,5 @@ public class HashMapProductStorage implements ProductStorage{
                 .stream()
                 .filter(Product::getOnline)
                 .collect(Collectors.toList());
-    }}
+    }
+}

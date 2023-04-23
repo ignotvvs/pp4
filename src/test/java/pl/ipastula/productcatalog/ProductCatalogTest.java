@@ -1,10 +1,9 @@
-package pl.ipastula.productcatalog;
+package pl.jkanclerz.productcatalog;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
 
 public class ProductCatalogTest {
@@ -34,11 +33,12 @@ public class ProductCatalogTest {
     @Test
     void itAllowsToLoadProductDetails() {
         ProductCatalog catalog = thereIsProductCatalog();
+
         String productId = catalog.addProduct("lego set 8083", "nice one");
 
-        Product loaded = catalog.loadById(productId);
-        assert loaded.getId().equals(productId);
-
+        Product loadedProduct = catalog.loadById(productId);
+        assert loadedProduct.getId().equals(productId);
+        assert loadedProduct.getName().equals("lego set 8083");
     }
 
     @Test
@@ -60,7 +60,7 @@ public class ProductCatalogTest {
         catalog.assignImage(productId, "foo/boo/nice_image.jpeg");
 
         Product loadedProduct = catalog.loadById(productId);
-        assertEquals("some/nice_image.jpeg", loadedProduct.getImage());
+        assertEquals("foo/boo/nice_image.jpeg", loadedProduct.getImage());
     }
 
     @Test
@@ -74,12 +74,11 @@ public class ProductCatalogTest {
 
         List<Product> publishedProducts = catalog.allPublishedProducts();
         assertDoesNotThrow(() -> catalog.publishProduct(productId));
-
         assertEquals(1, publishedProducts.size());
     }
 
     @Test
-    void itDoesNotShowDraftProducts() {
+    void draftProductsAreNotListedForBeingSold() {
         ProductCatalog catalog = thereIsProductCatalog();
         String productId = catalog.addProduct("lego set 8083", "nice one");
 
@@ -88,7 +87,7 @@ public class ProductCatalogTest {
     }
 
     @Test
-    void itDenyPublicationWithoutImageAndPrice() {
+    void publicationIsPossibleWhenPriceAndImageAreDefined() {
         ProductCatalog catalog = thereIsProductCatalog();
         String productId = catalog.addProduct("lego set 8083", "nice one");
 

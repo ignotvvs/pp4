@@ -1,4 +1,4 @@
-package pl.ipastula.productcatalog;
+package pl.jkanclerz.productcatalog;
 
 public class ProductCantBePublishedException extends IllegalStateException {
 }

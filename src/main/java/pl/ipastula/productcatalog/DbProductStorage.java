@@ -1,4 +1,4 @@
-package pl.ipastula.productcatalog;
+package pl.jkanclerz.productcatalog;
 
 import java.util.ArrayList;
 import java.util.List;

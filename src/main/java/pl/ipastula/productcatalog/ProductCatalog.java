@@ -1,8 +1,4 @@
-package pl.ipastula.productcatalog;
-
-import java.math.BigDecimal;
-import java.util.*;
-import java.util.stream.Collectors;
+package pl.jkanclerz.productcatalog;
 
 import java.math.BigDecimal;
 import java.util.*;

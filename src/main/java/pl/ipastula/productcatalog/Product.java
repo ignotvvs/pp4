@@ -1,4 +1,4 @@
-package pl.ipastula.productcatalog;
+package pl.jkanclerz.productcatalog;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -49,13 +49,6 @@ public class Product {
     public void setOnline(boolean online) {
 
         this.online = online;
-    }
-
-    public boolean isOnline() {
-        return online;
-    }
-
-    public void setOnline() {
     }
 
     public boolean getOnline() {
