@@ -1,11 +1,11 @@
-package pl.jkanclerz;
+package pl.ipastula;
 
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import pl.jkanclerz.productcatalog.HashMapProductStorage;
-import pl.jkanclerz.productcatalog.ProductCatalog;
+import pl.ipastula.productcatalog.HashMapProductStorage;
+import pl.ipastula.productcatalog.ProductCatalog;
 
 @SpringBootApplication
 public class App {

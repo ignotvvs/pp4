@@ -1,4 +1,4 @@
-package pl.jkanclerz.productcatalog;
+package pl.ipastula.productcatalog;
 
 import java.math.BigDecimal;
 import java.util.UUID;
