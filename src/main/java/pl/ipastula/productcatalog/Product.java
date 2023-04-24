@@ -46,6 +46,10 @@ public class Product {
         image = imageKey;
     }
 
+    public String getDesc() {
+        return desc;
+    }
+
     public void setOnline(boolean online) {
 
         this.online = online;
