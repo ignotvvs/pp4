@@ -1,4 +1,4 @@
-package pl.jkanclerz.productcatalog;
+package pl.ipastula.productcatalog;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -44,6 +44,10 @@ public class Product {
     public void setImage(String imageKey) {
 
         image = imageKey;
+    }
+
+    public String getDesc() {
+        return desc;
     }
 
     public void setOnline(boolean online) {
