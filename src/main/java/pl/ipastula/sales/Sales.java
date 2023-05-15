@@ -24,4 +24,7 @@ public class Sales {
     private Optional<Cart> loadCartForCustomer(String customerId) {
         return cartStorage.load(customerId);
     }
+
+    public Offer geCurrentOffer() {
+    }
 }
