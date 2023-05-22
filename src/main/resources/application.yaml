@@ -1,0 +1,18 @@
+#key: value
+#key2: [1,2,3]
+#key3:
+#  nested_key: [foo,moo]
+#   nested_key2:
+#     zoo: gamma
+server:
+  port: 8181
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testDb
+    username: sa
+    password: ~
+  h2:
+    console:
+      enabled: true
+      path: /h2

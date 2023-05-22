@@ -7,6 +7,13 @@ public class Sales {
     private CartStorage cartStorage;
     private ProductDetailsProvider productDetailsProvider;
 
+    public Sales(CartStorage cartStorage, ProductDetailsProvider productDetailsProvider) {
+    }
+
+    public Sales() {
+
+    }
+
     public void addToCart(String customerId, String productId) {
         Cart customerCart = loadCartForCustomer(customerId)
                 .orElse(Cart.empty());
@@ -25,6 +32,6 @@ public class Sales {
         return cartStorage.load(customerId);
     }
 
-    public Offer geCurrentOffer() {
-    }
+    public Offer getCurrentOffer(String currentCustomer) {
+    return null;}
 }
