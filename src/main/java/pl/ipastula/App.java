@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import pl.ipastula.productcatalog.HashMapProductStorage;
 import pl.ipastula.productcatalog.ProductCatalog;
+import pl.ipastula.sales.*;
+
 import java.math.BigDecimal;
 
 @SpringBootApplication
@@ -33,6 +35,7 @@ public class App {
 
     @Bean
     Sales createSales() {
-        return new Sales CartStorage(), new ProductDetailsProvider()));
+        InMemoryProductDetailsProvider productDetails = new InMemoryProductDetailsProvider();
+        return new Sales(new CartStorage(), productDetails, new OfferCalculator(productDetails));
     }
 }

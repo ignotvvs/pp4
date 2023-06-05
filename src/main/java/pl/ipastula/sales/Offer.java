@@ -1,18 +1,27 @@
 package pl.ipastula.sales;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Offer {
-    BigDecimal total;
-    Integer itemsCount;
 
+    private final List<OfferLine> lines;
+    private final BigDecimal total;
 
-
-    public Integer getItemsCount() {
-        return itemsCount;
+    public Offer(List<OfferLine> lines, BigDecimal total) {
+        this.lines = lines;
+        this.total = total;
     }
 
-    public void setItemsCount(Integer itemsCount) {
-        this.itemsCount = itemsCount;
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public Integer getProductsCount() {
+        return lines.size();
+    }
+
+    public List<OfferLine> getOrderLines() {
+        return lines;
     }
 }
