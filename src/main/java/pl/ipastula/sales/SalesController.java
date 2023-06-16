@@ -6,18 +6,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SalesController {
-    Sales sales;
+
+    private Sales sales;
+
     public SalesController(Sales sales) {
         this.sales = sales;
     }
-    @GetMapping("/api/offer")
-    public Offer getCurrentOffer() {
+
+    @GetMapping("/api/current-offer")
+    public Offer currentOffer() {
         return sales.getCurrentOffer(getCurrentCustomer());
     }
-    @PostMapping("/api/add-to-cart/{productId}")
+
+    @PostMapping("/api/cart/{productId}")
     public void addToCart(@PathVariable String productId) {
         sales.addToCart(getCurrentCustomer(), productId);
     }
+
+
+    @PostMapping("/api/accept-offer")
+    public void acceptOffer() {
+        sales.acceptOffer();
+    }
+
     private String getCurrentCustomer() {
         return "Kuba";
     }

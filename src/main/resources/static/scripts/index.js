@@ -1,9 +1,16 @@
-const a = 5;
-let b = 5;
+const getProducts = () => {
+    return fetch("/api/products")
+        .then((response) => response.json())
+        .catch((error) => console.log(error))
+};
 
-const myFunction = (foo) => {
-    console.log(foo);
+const getCurrentOffer = () => {
+    return fetch("/api/offer")
+        .then((response) => response.json());
 }
+const refreshOffer = async () => {
+    const offer = await getCurrentOffer();
+    const cart = document.querySelector('.cart');
 
 const getProducts = () => {
     return fetch("api/products")
@@ -83,4 +90,5 @@ const initializeAddToCartHandler = (el) =>  {
 
      console.log("post get products");
 })();
+
 
