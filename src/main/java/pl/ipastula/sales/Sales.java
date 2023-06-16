@@ -14,6 +14,13 @@ public class Sales {
         this.offerCalculator = offerCalculator;
     }
 
+    public Sales(CartStorage cartStorage, ProductDetailsProvider productDetailsProvider) {
+    }
+
+    public Sales() {
+
+    }
+
     public void addToCart(String customerId, String productId) {
         Cart customerCart = loadCartForCustomer(customerId)
                 .orElse(Cart.empty());
@@ -34,6 +41,8 @@ public class Sales {
         return cartStorage.load(customerId);
     }
 
+
+
     public Offer getCurrentOffer(String customerId) {
         Cart customerCart = loadCartForCustomer(customerId)
                 .orElse(Cart.empty());
@@ -50,4 +59,5 @@ public class Sales {
     public void acceptOffer() {
 
     }
+
 }

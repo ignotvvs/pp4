@@ -28,6 +28,7 @@ public class SalesController {
     public void acceptOffer() {
         sales.acceptOffer();
     }
+
     private String getCurrentCustomer() {
         return "Kuba";
     }

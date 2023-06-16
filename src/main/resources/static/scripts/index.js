@@ -12,49 +12,83 @@ const refreshOffer = async () => {
     const offer = await getCurrentOffer();
     const cart = document.querySelector('.cart');
 
-    cart.querySelector('.total').textContent = `${offer.total} PLN`;
-    cart.querySelector('.itemsCount').textContent = `${offer.itemsCount} items`;
+const getProducts = () => {
+    return fetch("api/products")
+            .then(response => response.json());
 }
-const createHtmlFromString = (htmlAsString) => {
-    const tmpElem = document.createElement('div');
-    tmpElem.innerHTML = htmlAsString.trim();
-    return tmpElem.firstChild;
+
+const addToCart = (productId) => {
+    return fetch(`/api/add-to-cart/${productId}`,{
+        method: "POST",
+        body:JSON.stringify({})
+    }).then(response => response.json());
 }
-const createHtmlComponent = (product) => {
+
+const createHtmlElementFromString = (template) => {
+    let tmpElement = document.createElement('div');
+    tmpElement.innerHTML = template.trim();
+
+    return tmpElement.firstChild;
+}
+
+
+const createProductComponent = (product) => {
     const template = `
         <li class="product">
-            <h4>${product.name}</h4>
-            <img />
-            <span>${product.price}</span>
-            <button
-                class="product__add-to-cart"
-                data-product-id="${product.id}"
+            <span>${product.name}</span>
+            <div>
+                <span>${product.price}</span>
+            </div>
+            <button class="product__add-to-cart"
+                    date-product-id="${product.id}"
             >
-                Add to cart +
+                Add to cart
             </button>
         </li>
     `;
-    return createHtmlFromString(template);
+
+    return createHtmlElementFromString(template);
 }
-const addToCart = (productId) => {
-    return fetch(`/api/add-to-cart/${productId}`, {
-        method: 'POST'
-    });
-};
-const initializeAddToCartHandler = (htmlEl) => {
-    const btn = htmlEl.querySelector('button.product__add-to-cart');
+
+const getCurrentOffer = () => {
+    return fetch("/api/get-current-offer")
+        .then(response => response.json)
+}
+
+const refreshCurrentOffer = () => {
+    console.log('i am going to refresh offer');
+    const offerElement = document.querySelector('.cart');
+
+    getCurrentOffer()
+        .then(offer => {
+            offerElement.querySelector('.total').textContent = `${offer.total} PLN`;
+            offerElement.querySelector('.itemsCount').textContent = offer.itemCount;
+        });
+}
+
+const initializeAddToCartHandler = (el) =>  {
+    const btn = el.querySelector('button.product__add-to-cart');
     btn.addEventListener('click', () => {
         addToCart(btn.getAttribute('data-product-id'))
-            .then(refreshOffer());
+            .then(refreshCurrentOffer())
     });
-    return htmlEl;
-};
+
+    return el;
+}
+
 (async () => {
-    const productsListEl = document.querySelector('#products-list');
-    await refreshOffer();
+    console.log("It works :)")
+    const productsList = document.querySelector('#productsList');
+
     const products = await getProducts();
-    products
-        .map(product => createHtmlComponent(product))
-        .map(productComponent => initializeAddToCartHandler(productComponent))
-        .forEach(el => productsListEl.appendChild(el));
+
+        products
+              .map(p => createProductComponent(p))
+              .map(el => initializeAddToCartHandler(el))
+              .forEach(el => productsList.appendChild(el));
+
+
+     console.log("post get products");
 })();
+
+
